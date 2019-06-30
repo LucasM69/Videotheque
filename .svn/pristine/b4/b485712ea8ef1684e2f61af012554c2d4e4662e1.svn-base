@@ -1,0 +1,27 @@
+﻿using System;
+using System.Windows;
+using Videotheque.DataAccess;
+using Videotheque.ViewModel;
+using Videotheque.Views;
+
+namespace Videotheque
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow
+    {
+        public MainWindow()
+        {
+            MainWindowViewModel viewModel = new MainWindowViewModel();
+            InitializeComponent();
+            base.DataContext = viewModel;
+        }
+
+        private void BtnListeFilms_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var host = new ListWindow();
+            host.Show();
+        }
+    }
+}

@@ -1,0 +1,8 @@
+namespace Videotheque.enums
+{
+    public enum TypeMedia
+    {
+        FILM,
+        SERIE
+    }
+}

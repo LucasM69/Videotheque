@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Videotheque.DataAccess;
+using Videotheque.Model;
+
+namespace Videotheque.ViewModel
+{
+    public class MainWindowViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public int nbMedia { get; set; }
+
+        public MainWindowViewModel()
+        {
+            onStartupAsync();
+        }
+
+        private async void onStartupAsync()
+        {
+            DbService db = await DbService.getInstance();
+            List<Media> lMedia = db.Medias.OrderBy(o => o.Titre).ToList();
+            //Debug.WriteLine(db.Medias.Find());
+            nbMedia = lMedia.Count();
+        }
+    }
+}

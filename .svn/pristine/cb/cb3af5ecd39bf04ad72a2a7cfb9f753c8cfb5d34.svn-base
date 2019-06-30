@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Xml.Serialization;
+
+namespace Videotheque.ViewModel
+{
+    class ListeMediaViewModel : INotifyPropertyChanged
+    {
+        #region ========================================= Attributs binding =========================================
+        private string sNameMedia;
+        public string NameMedia
+        {
+            get
+            {
+                return sNameMedia;
+            }
+            set
+            {
+                this.sNameMedia = value;
+                OnPropertyChanged(nameof(NameMedia));
+            }
+        }
+
+        public ICommand ClickCommand
+        {
+            get;
+            private set;
+        }
+
+        private string sTypMedia = null ;
+        public string TypeMedia {
+            get
+            {
+                return sTypMedia;
+            }
+            set
+            {
+                this.sTypMedia = value;
+               OnPropertyChanged(nameof(TypeMedia));
+            }
+        }
+
+        private string sFilterCase = null;
+        public string FilterCase
+        {
+            get
+            {
+                return this.sFilterCase;
+            }
+            set
+            {
+                this.sFilterCase = value;
+                OnPropertyChanged(nameof(FilterCase));
+            }
+        }
+
+
+        #endregion
+
+        [field: NonSerialized]
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged( string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}

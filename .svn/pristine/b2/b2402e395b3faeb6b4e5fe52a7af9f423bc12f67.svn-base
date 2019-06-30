@@ -1,0 +1,28 @@
+﻿<Window x:Name="Vidéothèque" x:Class="Videotheque.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Videotheque"
+        xmlns:viewmodel="clr-namespace:Videotheque.ViewModel"
+        Title="Vidéothèque" >
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel></viewmodel:MainWindowViewModel>
+    </Window.DataContext>
+
+
+
+    <Grid>
+        <Border/>
+        <!--                Click="BtnListeFilms_Click" -->
+        <Button x:Name="btnListeFilms" Content="Films" 
+                HorizontalAlignment="Left" Margin="20,45,0,0" 
+                VerticalAlignment="Top" Width="140" Height="30" Click="BtnListeFilms_Click" />
+
+        <Button x:Name="btnListeSeries" Content="Séries" 
+                HorizontalAlignment="Left" Margin="180,45,0,0" 
+                VerticalAlignment="Top" Width="140" Height="30" Click="BtnListeSeries_Click"/>
+        <Label Content="{Binding nbMedia}" Margin="545,360,195,115"></Label>
+
+
+    </Grid>
+</Window>

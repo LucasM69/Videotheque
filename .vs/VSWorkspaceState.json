@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Videotheque",
+    "\\Videotheque\\DataAccess",
+    "\\Videotheque\\database",
+    "\\Videotheque\\Views"
+  ],
+  "SelectedNode": "\\Videotheque\\Views\\MainWindow.xaml.cs",
+  "PreviewInSolutionExplorer": false
+}

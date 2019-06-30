@@ -1,0 +1,117 @@
+﻿<Window x:Class="Videotheque.Views.ListeMedia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:Videotheque.ViewModel"
+        mc:Ignorable="d"
+        Title="ListeMedia" BorderThickness="0 35 0 0" BorderBrush="{StaticResource CouleurThemePrincipal}">
+    <Window.DataContext>
+        <viewmodel:ListeMediaViewModel></viewmodel:ListeMediaViewModel>
+    </Window.DataContext>
+    <Grid>
+        <!-- 1 lignes de 60px -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- 3 colonnes de même taille -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" 
+                Content="Fermer" HorizontalAlignment="Left" IsCancel="True" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Height="40" />
+
+        <Button Grid.Row="0" Grid.Column="2" x:Name="btnAjoutMedia" 
+                Content="Ajout média" HorizontalAlignment="Right" IsCancel="True" Margin="0,10,20,0" VerticalAlignment="Top" Width="140" Height="40" />
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Top" Height="345" Margin="0,20,20,0">
+            <Grid Height="325" Margin="0,0,-172,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0"
+                       Content="Rechercher un média" 
+                       FontSize="25px"
+                       FontWeight="Bold"
+                       HorizontalContentAlignment="Center" Margin="10,20,0,10" HorizontalAlignment="Left" Width="385"/>
+
+                <!-- TextBox recherche média -->
+                <Label Grid.Row="1" Grid.Column="0" 
+                       Content="Nom du média recherché : " 
+                       HorizontalAlignment="Left" Width="175" 
+                       Margin="10,23,0,16"/>
+                <TextBox Grid.Row="1" Grid.Column="0" 
+                         Margin="190,15,0,10" Padding="9" 
+                         FontSize="15px" Text="{Binding NameMedia}" HorizontalAlignment="Left" Width="203"  />
+
+
+                <!-- Liste déroulante recherche média -->
+                <Label Grid.Row="2" Grid.Column="0" 
+                       Content="Filtre média : " 
+                       HorizontalAlignment="Left" Width="175" 
+                       Margin="10,23,0,16"/>
+
+                <ComboBox Grid.Row="2" 
+                          Grid.Column="0"
+                          SelectedItem="{Binding TypeMedia}" 
+                          Margin="105,10,0,10"                         
+                          HorizontalAlignment="Left"
+                          Padding="9" FontSize="15px" Width="288"  >
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                            <sys:String>Aucun</sys:String>
+                            <sys:String>Film</sys:String>
+                            <sys:String>Série</sys:String>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+
+
+                <!-- Liste déroulante filtre -->
+
+                <Label Grid.Row="3" Grid.Column="0" 
+                       Content="Filtrer par : " 
+                       Margin="10,23,0,16" HorizontalAlignment="Left" Width="175"/>
+
+                <ComboBox Grid.Row="3" 
+                          Grid.Column="0"
+                          SelectedItem="{Binding FilterCase}" 
+                          Margin="105,15,0,10"
+                          Padding="9" FontSize="15px" HorizontalAlignment="Left" Width="288"  >
+                    <ComboBox.ItemsSource>
+                        <x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                            <sys:String>Aucun</sys:String>
+                            <sys:String>Date de sortie</sys:String>
+                            <sys:String>Note</sys:String>
+                            <sys:String>Année</sys:String>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+
+
+                <!-- Bouton rechercher -->
+
+                <Button Grid.Row="4" 
+                        x:Name="btnRechercher" 
+                        Content="Rechercher"                        
+                        HorizontalAlignment="Left"  
+                        Margin="10,12,0,13" Width="383" />
+            </Grid>
+
+
+
+        </StackPanel>
+
+    </Grid>
+</Window>

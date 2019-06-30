@@ -1,0 +1,226 @@
+﻿<Window x:Class="Videotheque.Views.AjoutMedia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:Videotheque.ViewModel"
+        mc:Ignorable="d"
+        Title="AjoutMedia" ResizeMode="NoResize" BorderThickness="0 35 0 0" Width="500" Height="800" BorderBrush="{StaticResource CouleurThemePrincipal}">
+    <Window.DataContext>
+        <viewmodel:AjoutMediaViewModel></viewmodel:AjoutMediaViewModel>
+    </Window.DataContext>
+    <Grid>
+        <!-- 12 lignes de même taille -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- 12 colonnes de même taille -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Type de média : " Margin="15"></Label>
+
+        <ComboBox Grid.Row="0" Grid.Column="4" 
+                  Grid.ColumnSpan="7"
+                          SelectedItem="{Binding TypeMedia}"
+                          Padding="9" FontSize="15px"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch" Margin="10">
+            <ComboBox.ItemsSource>
+                <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:String}">
+                    <sys:String>Film</sys:String>
+                    <sys:String>Série</sys:String>
+                </x:Array>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <Label Grid.Row="1" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Titre : " Margin="15"></Label>
+
+        <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding Titre}"
+                  Grid.ColumnSpan="7" Margin="10"  Padding="4,8,0,0" FontSize="15" ></TextBox>
+
+
+        <Label Grid.Row="2" Grid.Column="0" 
+               Grid.ColumnSpan="4" 
+               Content="Synopsis :" 
+               Margin="10,20,20,10"></Label>
+
+        <TextBox Grid.Row="2" Grid.Column="4" 
+                 Grid.RowSpan="2"
+                  Grid.ColumnSpan="7" 
+                 Margin="14,10,15,0"
+                 Height="90"
+                 Width="250"
+                 TextWrapping="Wrap"
+                 TextAlignment="Left" Text="{Binding Synopsis}"/>
+
+        <Label Grid.Row="4" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Date de sortie :" Margin="15"></Label>
+
+        <DatePicker Grid.Row="4" Grid.Column="4" 
+                  Grid.ColumnSpan="7" Margin="10" SelectedDate="{Binding DateMedia}" 
+                    FontSize="15" Padding="4,8,0,0"></DatePicker>
+
+        <Label Grid.Row="5" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Durée" Margin="15"></Label>
+
+
+        <Label Content="H :" Grid.Row="5" Grid.Column="4" Margin="15,15,0,15" />
+        <TextBox Grid.Row="5" Grid.Column="5"  Margin="10,10,31,10" Padding="4,8,0,0"  
+                 Text="{Binding Heure}" MaxLength="1" FontSize="15" Grid.ColumnSpan="2"></TextBox>
+
+
+        <Label Content="M :" Grid.Row="5" Grid.Column="6" Margin="15,15,0,15" 
+               Grid.ColumnSpan="2" />
+        <TextBox Grid.Row="5" Grid.Column="7"  Margin="10,10,27,10" Padding="4,8,0,0"  
+                 Text="{Binding Minute}" MaxLength="2" FontSize="15" Grid.ColumnSpan="2"></TextBox>
+
+
+        <Label Content="S :" Grid.Row="5" Grid.Column="8" Margin="15,15,0,15" />
+        <TextBox Grid.Row="5" Grid.Column="9"  Margin="10" Padding="4,8,0,0"  
+                 Text="{Binding Seconde}" MaxLength="2" FontSize="15" Grid.ColumnSpan="2"></TextBox>
+
+        <Label Grid.Row="6" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Age minimum :" Margin="15"></Label>
+
+        <ComboBox Grid.Row="6" Grid.Column="4" 
+                  Grid.ColumnSpan="7"
+                          SelectedItem="{Binding AgeMin}"
+                          Padding="9" FontSize="15px"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch" Margin="10">
+            <ComboBox.ItemsSource>
+                <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:String}">
+                    <sys:String>Aucune</sys:String>
+                    <sys:String>10</sys:String>
+                    <sys:String>12</sys:String>
+                    <sys:String>16</sys:String>
+                    <sys:String>18</sys:String>
+                </x:Array>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <Label Grid.Row="7" 
+               Grid.ColumnSpan="4" 
+               Content="Support physique" 
+               Margin="10,25,31,0" RenderTransformOrigin="0.478,0.4" Grid.Column="2" Height="27" VerticalAlignment="Top"/>
+
+        <CheckBox Grid.Row="7" Grid.Column="3"  IsChecked="{Binding SupportPhysique}" 
+                  Margin="16,10,39,27"  
+                  Grid.ColumnSpan="2">
+
+        </CheckBox>
+
+        <Label Grid.Row="7" 
+               Grid.ColumnSpan="4" 
+               Content="Support Numérique" 
+               Margin="10,25,15,0"
+               Grid.Column="7" Height="27" 
+               VerticalAlignment="Top"/>
+
+        <CheckBox Grid.Row="7" Grid.Column="8" IsChecked="{Binding SupportNumerique}" 
+                  Margin="15,10,40,27"  
+                  Grid.ColumnSpan="2">
+
+        </CheckBox>
+
+        <Label Grid.Row="8" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Langue VO :" 
+               Margin="15"></Label>
+
+        <ComboBox Grid.Row="8" Grid.Column="4" 
+                  Grid.ColumnSpan="7"
+                          SelectedItem="{Binding LangueVO}"
+                          Padding="9" FontSize="15px"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch" Margin="10">
+            <ComboBox.ItemsSource>
+                <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:String}">
+                    <sys:String>Anglais</sys:String>
+                    <sys:String>Français</sys:String>
+                    <sys:String>Japonais</sys:String>
+                    <sys:String>Coréen</sys:String>
+                </x:Array>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <Label Grid.Row="9" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Langue média :" 
+               Margin="15"></Label>
+
+        <ComboBox Grid.Row="9" Grid.Column="4" 
+                  Grid.ColumnSpan="7"
+                          SelectedItem="{Binding LangueMedia}"
+                          Padding="9" FontSize="15px"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch" Margin="10">
+            <ComboBox.ItemsSource>
+                <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:String}">
+                    <sys:String>Anglais</sys:String>
+                    <sys:String>Français</sys:String>
+                    <sys:String>Japonais</sys:String>
+                    <sys:String>Coréen</sys:String>
+                </x:Array>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <Label Grid.Row="10" Grid.Column="0" 
+               Grid.ColumnSpan="4" Content="Sous-titre :" 
+               Margin="15"></Label>
+
+        <ComboBox Grid.Row="10" Grid.Column="4" 
+                  Grid.ColumnSpan="7"
+                          SelectedItem="{Binding SousTitre}"
+                          Padding="9" FontSize="15px"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch" Margin="10">
+            <ComboBox.ItemsSource>
+                <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:String}">
+                    <sys:String>Anglais</sys:String>
+                    <sys:String>Français</sys:String>
+                    <sys:String>Japonais</sys:String>
+                    <sys:String>Coréen</sys:String>
+                </x:Array>
+            </ComboBox.ItemsSource>
+        </ComboBox>
+
+        <Button Grid.Row="12" 
+                Grid.Column="2" 
+                Grid.ColumnSpan="3" Margin="10"
+                Content="Fermer" IsCancel="True"></Button>
+        <Button Grid.Row="12" 
+                Grid.Column="7" 
+                Grid.ColumnSpan="3" Margin="10" 
+                Content="Enregistrer"
+                Command="{Binding SaveButton}"
+                
+                ></Button>
+
+
+    </Grid>
+</Window>

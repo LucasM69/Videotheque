@@ -1,0 +1,266 @@
+﻿<Window x:Class="Videotheque.Views.ListeMedia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:Videotheque.Converters"
+        xmlns:viewmodel="clr-namespace:Videotheque.ViewModel"
+        mc:Ignorable="d"
+        Title="ListeMedia" BorderThickness="0 35 0 0" BorderBrush="{StaticResource CouleurThemePrincipal}">
+    <Window.DataContext>
+        <viewmodel:ListeMediaViewModel></viewmodel:ListeMediaViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:OuiNonConverter x:Key="OuiNonConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- 2 colonnes de même taille -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Bouton fermer -->
+        <Button Grid.Row="0" Grid.Column="0" 
+                Content="Fermer" HorizontalAlignment="Left" IsCancel="True" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Height="40" />
+
+        <!-- Bouton Ajouter média -->
+        <Button Grid.Row="0" Grid.Column="1" x:Name="btnAjoutMedia" 
+                Content="Ajout média" HorizontalAlignment="Right" 
+                Command="{Binding ButtonAddMedia}"
+                Margin="0,10,10,0" VerticalAlignment="Top" Width="136" Height="40" />
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,20,10,0" Orientation="Vertical">
+
+            <Grid                     
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       Content="Rechercher un média" 
+                       FontSize="25px"
+                       FontWeight="Bold"
+                       HorizontalContentAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="10,20,5,10"/>
+
+                <!-- TextBox recherche média -->
+                <Label Grid.Row="1" Grid.Column="0" 
+                       Content="Nom du média recherché : "
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Stretch"
+                       Margin="10,23,0,16"/>
+
+                <TextBox Grid.Row="1" Grid.Column="1" 
+                         Padding="9" 
+                         FontSize="15px" Text="{Binding NameMedia}" 
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Stretch" Margin="10,15,10,10"/>
+
+
+
+
+                <!-- Liste déroulante recherche média -->
+
+                <Label Grid.Row="2" Grid.Column="0" 
+                       Content="Filtre média : " 
+                       HorizontalAlignment="Left" Width="175" 
+                       Margin="10,23,0,16"/>
+
+                <ComboBox Grid.Row="2" 
+                          Grid.Column="1"
+                          SelectedItem="{Binding TypeMedia}"
+                          Padding="9" FontSize="15px"
+                          Margin="10,15,10,10"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch">
+                    <ComboBox.ItemsSource>
+                        <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:String}">
+                            <sys:String>Aucun</sys:String>
+                            <sys:String>Film</sys:String>
+                            <sys:String>Série</sys:String>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+
+
+                <!-- Liste déroulante filtre -->
+
+
+                <Label Grid.Row="3" Grid.Column="0" 
+                       Content="Filtrer par : " 
+                       HorizontalAlignment="Left" Width="175" 
+                       Margin="10,23,0,16"/>
+
+                <ComboBox Grid.Row="3" 
+                          Grid.Column="1"
+                          SelectedItem="{Binding FilterCase}"                           
+                          Padding="9" FontSize="15px"
+                          Margin="10,15,10,10"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Stretch">
+                    <ComboBox.ItemsSource>
+                        <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" Type="{x:Type sys:String}">
+                            <sys:String>Aucun</sys:String>
+                            <sys:String>Date de sortie</sys:String>
+                            <sys:String>Note</sys:String>
+                            <sys:String>Année</sys:String>
+                        </x:Array>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+
+
+                <!-- Bouton rechercher -->
+                <Button Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                        x:Name="btnRechercher" 
+                        Content="Rechercher" 
+                        Command="{Binding ButtonRecherche}" 
+                        Margin="10,0,10,-55" HorizontalAlignment="Stretch"  />
+            </Grid>
+
+
+
+        </StackPanel>
+        <ListView Grid.Column="1"  ScrollViewer.VerticalScrollBarVisibility="Disabled"  Margin="10" Grid.Row="1" 
+                  ItemsSource="{Binding ListeMedia}"
+                  SelectedItem="{Binding SelectedMedia}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="180">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Row="0" Grid.Column="0" 
+                                    Grid.ColumnSpan="2" Grid.RowSpan="2" 
+                                    Orientation="Vertical" 
+                                    HorizontalAlignment="Stretch" 
+                                    VerticalAlignment="Stretch">
+                            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" 
+                                   Width="Auto" Height="140"
+                                   Stretch="Uniform"
+                                   Visibility="Visible"
+                                   SnapsToDevicePixels="True"
+                                   VerticalAlignment="Center" Margin="0,10"  
+                                   Source="pack://application:,,,/Assets/Images/logo.png"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="2" 
+                                    Grid.ColumnSpan="2" Grid.RowSpan="2" 
+                                    Orientation="Vertical">
+                            <Label Content="{Binding Titre}" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="30"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource  CouleurThemeSecondaire}"></Label>
+
+                            <Label Content="Type de média" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="{DynamicResource  TextColor}"></Label>
+                            <Label Content="{Binding TypeMedia}" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource  CouleurThemeSecondaire}"></Label>
+
+                            <Label Content="Date de sortie" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="{DynamicResource  TextColor}"></Label>
+
+                            <Label Content="{Binding DateSortie, StringFormat=dd-MM-yyyy}" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource  CouleurThemeSecondaire}"></Label>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="4" 
+                                    Grid.ColumnSpan="1" Grid.RowSpan="2" 
+                                    Orientation="Vertical" 
+                                    HorizontalAlignment="Stretch" 
+                                    VerticalAlignment="Stretch">
+
+
+                            <Label Content="Age" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="{DynamicResource  TextColor}"></Label>
+                            <Label Content="{Binding AgeMin}" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource  CouleurThemeSecondaire}"></Label>
+
+                            <Label Content="Durée" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="{DynamicResource  TextColor}"></Label>
+                            <Label Content="{Binding Duree}" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource  CouleurThemeSecondaire}"></Label>
+                            <Label Content="Media vu" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="{DynamicResource  TextColor}"></Label>
+                            <Label Content="{Binding Vu, Converter={StaticResource OuiNonConverter}}" 
+                                   HorizontalAlignment="Left" 
+                                   HorizontalContentAlignment="Center"
+                                   FontSize="15"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource  CouleurThemeSecondaire}"></Label>
+
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+﻿using System;
+using System.Windows;
+using Videotheque.DataAccess;
+using Videotheque.Views;
+
+namespace Videotheque
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            this.lblTotMediasCount = new System.Windows.Controls.Label() ;
+            this.lblTotMediasCount.Content = "5";
+        }
+
+        private void BtnListeFilms_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var host = new ListWindow();
+            host.Show();
+        }
+    }
+}

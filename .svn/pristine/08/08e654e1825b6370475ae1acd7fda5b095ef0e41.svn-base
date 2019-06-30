@@ -1,0 +1,36 @@
+﻿<Application x:Class="Videotheque.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Videotheque"
+             StartupUri="views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="CouleurThemePrincipale" Color="#fecc00"></SolidColorBrush>
+            <SolidColorBrush x:Key="CouleurBoutons" Color="#feb300"></SolidColorBrush>
+            <SolidColorBrush x:Key="TextColor" Color="#262626"></SolidColorBrush>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource CouleurBoutons}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextColor}"></Setter>
+                <Setter Property="FontSize"/>
+            </Style>
+            <Style TargetType="Window">
+                <Setter Property="FontFamily" Value="Arial,Sans-Serif"/>
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="MinWidth" Value="0"/>
+                <Setter Property="MinHeight" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="BorderBrush" Value="{StaticResource CouleurThemePrincipale}"/>
+                <Setter Property="BorderThickness" Value="0 35 0 0"/>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Arial,Sans-Serif"/>
+                <Setter Property="FontSize" Value="14px"/>
+            </Style>
+           </ResourceDictionary>
+    </Application.Resources>
+</Application>

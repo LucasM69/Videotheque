@@ -1,0 +1,192 @@
+﻿<Window x:Class="Videotheque.Views.ConsultationMedia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:Videotheque.ViewModel"
+        xmlns:converters="clr-namespace:Videotheque.Converters"
+        mc:Ignorable="d"
+        Title="ConsultationMedia" BorderThickness="0 35 0 0" BorderBrush="{StaticResource CouleurThemePrincipal}">
+    <Window.DataContext>
+        <viewmodel:ConsultationMediaViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:OuiNonConverter x:Key="OuiNonConverter"/>
+        <converters:AgeConverter x:Key="AgeConverter"/>
+    </Window.Resources>
+    <Grid>
+        <!-- 12 lignes de même taille -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- 12 colonnes de même taille -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Bouton fermer -->
+        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                Grid.RowSpan="2"
+                Content="Fermer" HorizontalAlignment="Left" 
+                IsCancel="True" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Height="40" />
+
+        <!-- Bouton Ajouter média -->
+        <Button Grid.Row="0" Grid.Column="9" Grid.ColumnSpan="3" Grid.RowSpan="2" x:Name="btnModifMedia" 
+                Content="Modfier média" HorizontalAlignment="Right" 
+                Margin="0,10,10,0" VerticalAlignment="Top" Width="136" Height="40" />
+
+        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="8" 
+               HorizontalContentAlignment="Center" 
+               Content="{Binding SelectedMedia.Titre}"
+               FontSize="30"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}"></Label>
+        <Image Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Source="pack://application:,,,/Assets/Images/logo.png"></Image>
+
+        <Label Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Type de média : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.TypeMedia}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+
+        <Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Date de sortie : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.DateSortie}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+
+        <Label Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Media vu ? : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.Vu, Converter={StaticResource OuiNonConverter}}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+
+        <Label Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Note : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="6" Grid.Column="5" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.Note}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+        
+        <Label Grid.Row="7" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Langue VO : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="7" Grid.Column="9" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.LangueVO}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+        
+        <Label Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Age minimum : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.AgeMin, Converter={StaticResource AgeConverter}}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+
+        <Label Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="8" 
+               HorizontalContentAlignment="Center" 
+               Content="Synopsis et détails"
+               FontSize="20"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}"></Label>
+
+
+
+        <Label Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Support physique : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="3" Grid.Column="9" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.SupportPhysique,Converter={StaticResource OuiNonConverter}}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+
+        <Label Grid.Row="4" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Support numérique : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="4" Grid.Column="9" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.SupportPhysique,Converter={StaticResource OuiNonConverter}}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+        
+        <Label Grid.Row="5" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Durée : "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="5" Grid.Column="9" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.Duree}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+        
+        <Label Grid.Row="6" Grid.Column="7" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+               Content="Langue média "
+               FontSize="15"
+               Margin="0,0,0,10"></Label>
+        <Label Grid.Row="6" Grid.Column="9" HorizontalAlignment="Left" 
+               Content="{Binding SelectedMedia.LangueMedia}"
+               FontSize="15"
+               FontWeight="Bold"
+               Foreground="{DynamicResource CouleurThemeSecondaire}" Margin="0,0,0,10"/>
+        
+        
+        
+
+        <Rectangle Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="8" Grid.RowSpan="3" StrokeThickness="3" 
+                   Stroke="{DynamicResource CouleurThemePrincipal}">
+        </Rectangle>
+
+        <TextBlock Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="8" Grid.RowSpan="3" 
+                   TextWrapping="WrapWithOverflow" Margin="10" 
+                   FontSize="15"
+                   FontFamily="Arial, sans-serif"
+                   Text="{Binding SelectedMedia.Synopsis}">
+        </TextBlock>
+    </Grid>
+</Window>

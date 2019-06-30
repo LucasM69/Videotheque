@@ -1,0 +1,74 @@
+﻿<Window x:Name="Vidéothèque" x:Class="Videotheque.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Videotheque"
+        xmlns:viewmodel="clr-namespace:Videotheque.ViewModel"
+        Title="Vidéothèque" BorderThickness="0 35 0 0" BorderBrush="{StaticResource CouleurThemePrincipal}">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel></viewmodel:MainWindowViewModel>
+    </Window.DataContext>
+
+
+    <Grid>
+        <!-- 2 lignes de même taille -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- 2 colonnes de même taille -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Zone en haut à gauche -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  
+                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" 
+                   Orientation="Horizontal">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Content="Médias disponibles : " HorizontalContentAlignment="Center" FontSize="25px" 
+                   FontWeight="Black"  Width="330" Height="50" />
+            <Label VerticalAlignment="Center" 
+                   HorizontalContentAlignment="Center" 
+                   Content="{Binding labelNbMediaDispo}" FontSize="45px" 
+                   Foreground="{DynamicResource ResourceKey=CouleurThemeSecondaire}"  FontWeight="Black" Width="79" />
+        </StackPanel>
+
+        <!-- Zone en haut à droite -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  
+                    Grid.Row="0" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="1" 
+                   Orientation="Vertical" Height="214" Margin="25,10,30,10" Width="325">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Top" 
+                   Content="Films disponibles" HorizontalContentAlignment="Center" FontSize="25px" 
+                   FontWeight="Black"  Width="330" Height="50" />
+            <Label VerticalAlignment="Center" 
+                   HorizontalContentAlignment="Center" 
+                   Content="{Binding labelNbFilmsDispo}" FontSize="45px" 
+                   Foreground="{DynamicResource ResourceKey=CouleurThemeSecondaire}"  FontWeight="Black" Width="79" Margin="123,0" Height="55" />
+            <Label HorizontalAlignment="Center" VerticalAlignment="Top" 
+                   Content="Séries disponibles" HorizontalContentAlignment="Center" FontSize="25px" 
+                   FontWeight="Black"  Width="330" Height="50" />
+            <Label VerticalAlignment="Center" 
+                   HorizontalContentAlignment="Center" 
+                   Content="{Binding labelNbSeriesDispo}" FontSize="45px" 
+                   Foreground="{DynamicResource ResourceKey=CouleurThemeSecondaire}"  FontWeight="Black" Width="79" Margin="123,0" Height="55" />
+        </StackPanel>
+
+        <Button 
+             x:Name="btnListeMedias"  VerticalAlignment="Center" Click="BtnListeMedias_Click" Content="Consulter les médias" 
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,56,30,54" FontSize="35" FontWeight="Bold" Height="125"/>
+
+        <!--                Click="BtnListeFilms_Click" -->
+        <!-- <Button x:Name="btnListeFilms" Content="Films" 
+        Margin="400,108,0,0" 
+                HorizontalAlignment="Left" 
+        
+                VerticalAlignment="Top" Width="140" Height="30" Click="BtnListeFilms_Click" Grid.Row="1" />
+
+        <Button x:Name="btnListeSeries" Content="Séries" 
+                HorizontalAlignment="Left" Margin="568,108,0,0" 
+                VerticalAlignment="Top" Width="140" Height="30" Click="BtnListeSeries_Click" Grid.Row="1"/>
+        <Label Content="{Binding nbMedia}" Margin="545,360,195,115"></Label>-->
+    </Grid>
+</Window>
