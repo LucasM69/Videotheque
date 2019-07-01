@@ -262,7 +262,7 @@ namespace Videotheque.ViewModel
             DbService db = await DbService.getInstance();
             db.Medias.Add(newMedia);
             await db.SaveChangesAsync();
-            MessageBox.Show("Le média de type " + typMedia + " a bien été enregisté" , "Error");
+            MessageBox.Show("Le média de type " + typMedia + " a bien été enregisté" , "Success");
             return;
 
         }
